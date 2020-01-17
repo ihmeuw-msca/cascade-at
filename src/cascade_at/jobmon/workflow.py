@@ -66,7 +66,7 @@ def jobmon_workflow_from_cascade_command(cc, context):
 
     wf = Workflow(
         workflow_args=f'dismod-at_{cc.model_version_id}',
-        project='proj_mscm',
+        project='proj_dismod_at',
         stderr=str(error_dir),
         stdout=str(output_dir),
         working_dir=str(context.model_dir),
