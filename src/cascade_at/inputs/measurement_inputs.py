@@ -21,7 +21,7 @@ from cascade_at.dismod.integrand_mappings import make_integrand_map
 from cascade_at.inputs.utilities.transformations import COVARIATE_TRANSFORMS
 from cascade_at.inputs.utilities.gbd_ids import SEX_ID_TO_NAME, SEX_NAME_TO_ID
 from cascade_at.inputs.utilities.gbd_ids import CascadeConstants, StudyCovConstants
-from cascade_at.inputs.utilities.covariate_weighting import expand_grid
+from cascade_at.model.utilities.grid_helpers import expand_grid
 
 LOG = get_loggers(__name__)
 

@@ -1,4 +1,33 @@
 import pandas as pd
+import numpy as np
+
+
+def array_start_mid_end(array):
+    """
+    Computes the starting point, ending point, and
+    midpoint of an array.
+
+    Args:
+        array: (np.array)
+
+    Returns:
+        (np.array)
+    """
+    return np.array([
+        array[:-1],
+        vec_to_midpoint(array),
+        array[1:]
+    ])
+
+
+def vec_to_midpoint(array):
+    """
+    Computes the midpoint between elements in an array.
+    Args:
+        array: (np.array)
+    Returns: (np.array)
+    """
+    return (array[1:] + array[:-1]) / 2
 
 
 def map_locations_to_nodes(df, node_df):
