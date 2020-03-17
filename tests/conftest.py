@@ -10,7 +10,6 @@ import cascade_at.core.db
 from cascade_at.inputs.data import CrosswalkVersion
 from cascade_at.settings.base_case import BASE_CASE
 from cascade_at.inputs.csmr import CSMR
-from cascade_at.model.grid_alchemy import Alchemy
 from cascade_at.inputs.asdr import ASDR
 from cascade_at.inputs.covariate_data import CovariateData
 from cascade_at.context.model_context import Context
@@ -18,8 +17,6 @@ from cascade_at.settings.settings import load_settings
 from cascade_at.inputs.measurement_inputs import MeasurementInputsFromSettings
 from cascade_at.inputs.population import Population
 from cascade_at.inputs.locations import LocationDAG
-from cascade_at.dismod.api.dismod_filler import DismodFiller
-
 
 cascade_at.core.db.BLOCK_SHARED_FUNCTION_ACCESS = True
 
@@ -262,18 +259,3 @@ def mi(asdr, cv, csmr, population, covariate_data, Demographics, settings):
 @pytest.fixture(scope='session')
 def dismod_data(mi, settings):
     return mi.dismod_data
-
-
-@pytest.fixture(scope='module')
-def df(mi, settings, temp_directory):
-    alchemy = Alchemy(settings)
-    d = DismodFiller(
-        path=temp_directory / 'temp.db',
-        settings_configuration=settings,
-        measurement_inputs=mi,
-        grid_alchemy=alchemy,
-        parent_location_id=70,
-        sex_id=2
-    )
-    d.fill_for_parent_child()
-    return d

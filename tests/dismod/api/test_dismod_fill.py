@@ -3,6 +3,24 @@ import numpy as np
 from numpy import nan, inf
 import pandas as pd
 
+from cascade_at.model.grid_alchemy import Alchemy
+from cascade_at.dismod.api.dismod_filler import DismodFiller
+
+
+@pytest.fixture(scope='module')
+def df(mi, settings, temp_directory):
+    alchemy = Alchemy(settings)
+    d = DismodFiller(
+        path=temp_directory / 'temp.db',
+        settings_configuration=settings,
+        measurement_inputs=mi,
+        grid_alchemy=alchemy,
+        parent_location_id=70,
+        sex_id=2
+    )
+    d.fill_for_parent_child()
+    return d
+
 
 @pytest.fixture(scope='module')
 def value_prior(df):
@@ -321,8 +339,8 @@ def integrand():
          'integrand_name': {0: 'Sincidence', 1: 'remission', 2: 'mtexcess', 3: 'mtother', 4: 'mtwith', 5: 'susceptible',
                             6: 'withC', 7: 'prevalence', 8: 'Tincidence', 9: 'mtspecific', 10: 'mtall',
                             11: 'mtstandard', 12: 'relrisk'},
-         'minimum_meas_cv': {0: 0.0, 1: 0.0, 2: 0.0, 3: 0.0, 4: 0.0, 5: 0.0, 6: 0.0, 7: 0.0, 8: 0.0, 9: 0.0, 10: 0.0,
-                             11: 0.0, 12: 0.0}}
+         'minimum_meas_cv': {0: 0.1, 1: 0.1, 2: 0.1, 3: 0.1, 4: 0.1, 5: 0.1, 6: 0.1, 7: 0.1, 8: 0.1, 9: 0.1, 10: 0.1,
+                             11: 0.1, 12: 0.1}}
     )
 
 
