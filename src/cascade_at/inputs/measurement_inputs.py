@@ -311,8 +311,7 @@ class MeasurementInputs:
                  f"and sex_id {sex_id}.")
         grid = expand_grid({
             'sex_id': [sex_id],
-            'location_id': self.location_dag.parent_children(
-                parent_location_id),
+            'location_id': self.demographics.location_id,
             'year_id': self.demographics.year_id,
             'age_group_id': self.demographics.age_group_id
         })
