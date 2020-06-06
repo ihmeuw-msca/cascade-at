@@ -13,7 +13,6 @@ setup(
         "sqlalchemy",
         "dill",
         "intervaltree",
-        "pytest",
         "tables",
         "networkx"
     ],
@@ -25,7 +24,10 @@ setup(
             "gbd==2.1.0",
             "jobmon==1.1.1",
             "elmo==1.6.18",
-            "ihme-rules==2.1.0"]
+            "ihme-rules==2.1.0"],
+        "testing": [
+            "hypothesis", "pytest", "pytest-mock"
+        ]
     },
     classifiers=[
         "Intended Audience :: Science/Research",
